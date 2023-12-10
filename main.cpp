@@ -5,11 +5,9 @@
 using namespace std;
 
 double generateRandomNumber() {
-    // Get the current time with microsecond precision
-    chrono::steady_clock::time_point currentTime = chrono::high_resolution_clock::now();
-
-    // Convert the current time to microseconds
-    long microSeconds = chrono::duration_cast<chrono::microseconds>(currentTime.time_since_epoch()).count();
+    clock_t currentTime = clock();
+    // Convert the time to microseconds
+    long long microSeconds = static_cast<long long>(currentTime) * 1000000;
 
     // Seed the random number generator with microsecond precision
     mt19937_64 generator(static_cast<unsigned long long>(microSeconds));
