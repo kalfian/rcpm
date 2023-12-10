@@ -2,6 +2,8 @@
 #include <random>
 #include <future>
 #include <sys/time.h>
+#include <unistd.h>
+
 using namespace std;
 
 long long getCurrentTimeMicroseconds() {
@@ -12,6 +14,8 @@ long long getCurrentTimeMicroseconds() {
 
 double generateRandomNumber() {
     // Get the current time in microseconds
+    usleep(10);
+
     uint64_t  rdgen = getCurrentTimeMicroseconds();
 
     std::mt19937_64 generator(rdgen);
