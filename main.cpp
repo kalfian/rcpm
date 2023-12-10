@@ -1,19 +1,21 @@
 #include <iostream>
-#include <iomanip>
 #include <random>
 #include <ctime>
 using namespace std;
 
 double generateRandomNumber() {
+    // Ensure proper header inclusion
+
+    // Get the current time in microseconds
     clock_t currentTime = clock();
-    // Convert the time to microseconds
     long long microSeconds = static_cast<long long>(currentTime) * 1000000;
 
-    // Seed the random number generator with microsecond precision
-    mt19937_64 generator(static_cast<unsigned long long>(microSeconds));
+    // Seed the random number generator with a more unique value
+    std::random_device rd;
+    std::mt19937_64 generator(rd() + microSeconds);
 
     // Generate a random double between 0 and 1 with 4 decimal places
-    uniform_real_distribution<double> distribution(0.0, 1.0);
+    std::uniform_real_distribution<double> distribution(0.0, 1.0);
     double randomDouble = distribution(generator);
 
     // Round to 4 decimal places
