@@ -48,7 +48,8 @@ vector<vector<double>> generateAktifitasMurid(int murid, int aktifitas) {
     vector<vector<double>> matrix(murid, vector<double>(aktifitas));
     for(int i = 0; i < murid ; i++ ) {
         for(int j = 0; j < aktifitas; j++) {
-            matrix[i][j] = generateRandomNumber();
+            double randomNumber = generateRandomNumber();
+            matrix[i][j] = randomNumber;
         }
     }
     return matrix;
