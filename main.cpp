@@ -6,10 +6,10 @@ using namespace std;
 
 double generateRandomNumber() {
     // Get the current time with microsecond precision
-    auto currentTime = chrono::high_resolution_clock::now();
+    chrono::steady_clock::time_point currentTime = chrono::high_resolution_clock::now();
 
     // Convert the current time to microseconds
-    auto microSeconds = chrono::duration_cast<chrono::microseconds>(currentTime.time_since_epoch()).count();
+    long microSeconds = chrono::duration_cast<chrono::microseconds>(currentTime.time_since_epoch()).count();
 
     // Seed the random number generator with microsecond precision
     mt19937_64 generator(static_cast<unsigned long long>(microSeconds));
