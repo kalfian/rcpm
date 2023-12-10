@@ -6,12 +6,11 @@ using namespace std;
 double generateRandomNumber() {
     // Get the current time in microseconds
     std::random_device rd;
+    uint64_t  rdgen = (static_cast<uint64_t>(rd()) << 32) | static_cast<uint64_t>(rd());
 
-    random_device::result_type randomDevice = rd();
+    cout << "Generator: " << rdgen << endl;
 
-    cout << "Random Device: " << randomDevice << endl;
-
-    std::mt19937 generator(randomDevice);
+    std::mt19937_64 generator(rdgen);
 
     // Generate a random double between 0 and 1 with 4 decimal places
     std::uniform_real_distribution<double> distribution(1.0, 9999.0);
