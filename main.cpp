@@ -1,12 +1,34 @@
 #include <iostream>
 #include <random>
 #include <future>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <sys/time.h>
+#endif
 using namespace std;
+
+long long getCurrentTimeMicroseconds() {
+#ifdef _WIN32
+    LARGE_INTEGER frequency;
+    LARGE_INTEGER currentTime;
+
+    if (!QueryPerformanceFrequency(&frequency) || !QueryPerformanceCounter(&currentTime)) {
+        // Handle error
+        return -1;
+    }
+
+    return currentTime.QuadPart * 1000000 / frequency.QuadPart;
+#else
+    struct timeval tv;
+    gettimeofday(&tv, nullptr);
+    return static_cast<long long>(tv.tv_sec) * 1000000 + tv.tv_usec;
+#endif
+}
 
 double generateRandomNumber() {
     // Get the current time in microseconds
-    std::random_device rd;
-    uint64_t  rdgen = (static_cast<uint64_t>(rd()) << 32) | static_cast<uint64_t>(rd());
+    uint64_t  rdgen = getCurrentTimeMicroseconds();
 
     cout << "Generator: " << rdgen << endl;
 
