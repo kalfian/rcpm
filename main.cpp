@@ -6,10 +6,15 @@ using namespace std;
 double generateRandomNumber() {
     // Get the current time in microseconds
     std::random_device rd;
-    std::mt19937 generator(rd());
+
+    random_device::result_type randomDevice = rd();
+
+    cout << "Random Device: " << randomDevice << endl;
+
+    std::mt19937 generator(randomDevice);
 
     // Generate a random double between 0 and 1 with 4 decimal places
-    std::uniform_real_distribution<double> distribution(1, 9999);
+    std::uniform_real_distribution<double> distribution(1.0, 9999.0);
     double randomDouble = distribution(generator);
 
     // Round to 4 decimal places
