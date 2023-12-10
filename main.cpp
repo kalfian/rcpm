@@ -1,17 +1,12 @@
 #include <iostream>
 #include <random>
-#include <ctime>
 #include <future>
 using namespace std;
 
 double generateRandomNumber() {
     // Get the current time in microseconds
-    clock_t currentTime = clock();
-    long long microSeconds = static_cast<long long>(currentTime) * 1000000;
-
-    // Seed the random number generator with a more unique value
     std::random_device rd;
-    std::mt19937_64 generator(rd() + microSeconds);
+    std::mt19937 generator(rd());
 
     // Generate a random double between 0 and 1 with 4 decimal places
     std::uniform_real_distribution<double> distribution(1, 9999);
