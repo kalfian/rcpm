@@ -6,6 +6,22 @@
 
 using namespace std;
 
+struct aktifitasKecil {
+    int durasi;
+    int r1;
+    int r2;
+    int r3;
+    int r4;
+    int aktifitas_pendahulu;
+};
+
+struct sumberdayaKecil {
+    int r1;
+    int r2;
+    int r3;
+    int r4;
+};
+
 long long getCurrentTimeMicroseconds() {
     struct timeval tv{};
     gettimeofday(&tv, nullptr);
@@ -88,7 +104,11 @@ void prosesDataKecil(int murid, int iterasi, int pelajaran) {
         cout << std::endl;
     }
 
+    // Ambil data aktifitas dari data_kecil.csv
+    // Convert data cvs ke struct
 
+    // Ambil data sumber daya dari data_sumberdaya_kecil.csv
+    // Convert data cvs ke struct
 
 }
 
