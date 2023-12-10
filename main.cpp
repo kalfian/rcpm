@@ -1,11 +1,10 @@
 #include <iostream>
 #include <random>
 #include <ctime>
+#include <future>
 using namespace std;
 
 double generateRandomNumber() {
-    // Ensure proper header inclusion
-
     // Get the current time in microseconds
     clock_t currentTime = clock();
     long long microSeconds = static_cast<long long>(currentTime) * 1000000;
@@ -15,11 +14,11 @@ double generateRandomNumber() {
     std::mt19937_64 generator(rd() + microSeconds);
 
     // Generate a random double between 0 and 1 with 4 decimal places
-    std::uniform_real_distribution<double> distribution(0.0, 1.0);
+    std::uniform_real_distribution<double> distribution(1, 9999);
     double randomDouble = distribution(generator);
 
     // Round to 4 decimal places
-    randomDouble = round(randomDouble * 10000.0) / 10000.0;
+    randomDouble = round(randomDouble) / 10000.0;
 
     return randomDouble;
 }
